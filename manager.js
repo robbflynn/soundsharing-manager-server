@@ -8,7 +8,7 @@ var sys = require('sys');
 var express = require('express');
 var mongodm = require("mongodm");
 
-var flashsocket = require('flashsocket');
+var flashsocket = require('flashsocket-js');
 
 var ServerMessageRouter = flashsocket.ServerMessageRouter;
 var binaryBodyParser = require('./src/utils/expressjs/parsers/binaryBodyParser.js').binaryBodyParser;
@@ -27,8 +27,8 @@ function init()
 {
 	// Express
 
-	var rest = express.createServer();
-
+	var rest = express();
+	
 	rest.configure(function(){
 		rest.use(express.bodyParser());
 		rest.use(binaryBodyParser());

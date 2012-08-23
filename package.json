@@ -3,9 +3,9 @@
   , "version": "0.0.1"
   , "private": true
   , "dependencies": {
-      "express": "2.4.2",
+      "express": "latest",
       "mongodm": "https://github.com/ActiveUnits/mongodm/tarball/master",
-      "mongodb": "http://github.com/ActiveUnits/node-mongodb-native/tarball/master",
+      "mongodb": "0.9.6-7",
       "flashsocket-js": "latest"
   }
 }

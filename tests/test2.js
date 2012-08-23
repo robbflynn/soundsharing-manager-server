@@ -13,7 +13,7 @@ var a3 = [1, "s", 4];
 sys.log(a1 === a2);
 sys.log(a1 === a3);*/
 
-var flashsocket = require('flashsocket');
+var flashsocket = require('flashsocket-js');
 
 var oreg = new flashsocket.ObjectRegister();
 

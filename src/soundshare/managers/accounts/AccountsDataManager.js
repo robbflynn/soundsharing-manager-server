@@ -1,7 +1,7 @@
 var sys = require('sys');
 
 var AccountContext = require('../../data/account/AccountContext');
-var ObjectRegister = require('flashsocket').ObjectRegister;
+var ObjectRegister = require('flashsocket-js').ObjectRegister;
 
 var finderBuilder = require('../../../utils/mongodb/MongoDeepFinder').builder;
 

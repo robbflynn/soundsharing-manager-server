@@ -1,6 +1,6 @@
 var sys = require('sys');
 
-var ServerEventDispatcher = require('flashsocket').ServerEventDispatcher;
+var ServerEventDispatcher = require('flashsocket-js').ServerEventDispatcher;
 
 StandardRadioBroadcast = module.exports = function(context)
 {

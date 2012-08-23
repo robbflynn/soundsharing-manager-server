@@ -1,6 +1,6 @@
 var sys = require('sys');
 
-var FlashSocketMessage = require('flashsocket').FlashSocketMessage;
+var FlashSocketMessage = require('flashsocket-js').FlashSocketMessage;
 
 SecureServerActionMessageBuilder = module.exports = function(target)
 {

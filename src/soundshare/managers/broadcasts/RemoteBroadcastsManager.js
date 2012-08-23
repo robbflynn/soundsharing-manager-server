@@ -1,7 +1,7 @@
 var fs = require('fs');
 var sys = require('sys');
 
-var ServerEventDispatcher = require('flashsocket').ServerEventDispatcher;
+var ServerEventDispatcher = require('flashsocket-js').ServerEventDispatcher;
 
 var RemoteBroadcastsManagerMessageBuilder = require('../../builders/messages/broadcasts/RemoteBroadcastsManagerMessageBuilder');
 

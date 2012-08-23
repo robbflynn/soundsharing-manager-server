@@ -1,7 +1,7 @@
 var sys = require('sys');
 var events = require('events');
 
-var ServerEventDispatcher = require('flashsocket').ServerEventDispatcher;
+var ServerEventDispatcher = require('flashsocket-js').ServerEventDispatcher;
 
 Broadcaster = module.exports = function(context)
 {
