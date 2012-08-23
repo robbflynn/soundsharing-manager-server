@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="src/soundshare/builders/broadcasts/|src/soundshare/data/server/|src/soundshare/managers/groups/|src/soundshare/managers/channels/|src/config/|src/soundshare/|src/soundshare/managers/broadcasts/|src/soundshare/managers/servers/|src/soundshare/managers/notifications/|src/soundshare/db/|src/soundshare/builders/messages/broadcasts/|src/soundshare/broadcasters/|src/soundshare/managers/connections/|src/soundshare/managers/members/|src/utils/mongodb/|src/soundshare/data/|src/soundshare/managers/security/|src/utils/|src/soundshare/data/account/|src/soundshare/managers/accounts/|src/soundshare/builders/messages/actions/|src/soundshare/broadcasts/|src/soundshare/builders/managers/|src/soundshare/db/base/|src/utils/expressjs/parsers/|src/soundshare/managers/stations/|src/soundshare/data/station/|src/soundshare/data/connection/|src/soundshare/managers/playlists/|tests/" kind="src" path=""/>
+	<classpathentry kind="src" path="src/config"/>
+	<classpathentry excluding="builders/broadcasts/|data/server/|managers/groups/|managers/channels/|managers/broadcasts/|managers/servers/|managers/notifications/|db/|builders/messages/broadcasts/|broadcasters/|managers/connections/|managers/members/|data/|managers/security/|data/account/|managers/accounts/|builders/messages/actions/|broadcasts/|builders/managers/|db/base/|managers/stations/|data/station/|data/connection/|managers/playlists/" kind="src" path="src/soundshare"/>
+	<classpathentry kind="src" path="src/soundshare/broadcasters"/>
+	<classpathentry kind="src" path="src/soundshare/broadcasts"/>
+	<classpathentry kind="src" path="src/soundshare/builders/broadcasts"/>
+	<classpathentry kind="src" path="src/soundshare/builders/managers"/>
+	<classpathentry kind="src" path="src/soundshare/builders/messages/actions"/>
+	<classpathentry kind="src" path="src/soundshare/builders/messages/broadcasts"/>
+	<classpathentry excluding="server/|account/|station/|connection/" kind="src" path="src/soundshare/data"/>
+	<classpathentry kind="src" path="src/soundshare/data/account"/>
+	<classpathentry kind="src" path="src/soundshare/data/connection"/>
+	<classpathentry kind="src" path="src/soundshare/data/server"/>
+	<classpathentry kind="src" path="src/soundshare/data/station"/>
+	<classpathentry excluding="base/" kind="src" path="src/soundshare/db"/>
+	<classpathentry kind="src" path="src/soundshare/db/base"/>
+	<classpathentry kind="src" path="src/soundshare/managers/accounts"/>
+	<classpathentry kind="src" path="src/soundshare/managers/broadcasts"/>
+	<classpathentry kind="src" path="src/soundshare/managers/channels"/>
+	<classpathentry kind="src" path="src/soundshare/managers/connections"/>
+	<classpathentry kind="src" path="src/soundshare/managers/groups"/>
+	<classpathentry kind="src" path="src/soundshare/managers/members"/>
+	<classpathentry kind="src" path="src/soundshare/managers/notifications"/>
+	<classpathentry kind="src" path="src/soundshare/managers/playlists"/>
+	<classpathentry kind="src" path="src/soundshare/managers/security"/>
+	<classpathentry kind="src" path="src/soundshare/managers/servers"/>
+	<classpathentry kind="src" path="src/soundshare/managers/stations"/>
+	<classpathentry excluding="mongodb/|expressjs/parsers/" kind="src" path="src/utils"/>
+	<classpathentry kind="src" path="src/utils/expressjs/parsers"/>
+	<classpathentry kind="src" path="src/utils/mongodb"/>
+	<classpathentry kind="src" path="tests"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path=""/>
+</classpath>
