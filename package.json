@@ -1,0 +1,11 @@
+{
+    "name": "sound-sharing-manager-server"
+  , "version": "0.0.1"
+  , "private": true
+  , "dependencies": {
+      "express": "2.4.2",
+      "mongodm": "https://github.com/ActiveUnits/mongodm/tarball/master",
+      "mongodb": "http://github.com/ActiveUnits/node-mongodb-native/tarball/master",
+      "flashsocket-js": "latest"
+  }
+}
