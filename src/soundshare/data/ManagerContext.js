@@ -19,7 +19,9 @@ ManagerContext = module.exports = function()
 	this.membersDataManager = null;
 	
 	this.playlistsDataManager = null;
+	
 	this.channelsDataManager = null;
+	this.channelsManager = null;
 	
 	this.serversManager = null;
 	this.serversDataManager = null;

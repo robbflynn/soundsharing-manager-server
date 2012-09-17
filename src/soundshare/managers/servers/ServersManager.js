@@ -26,9 +26,9 @@ ServersManager = module.exports = function(context)
 		_self.serverUp(client, message);
 	});
 	
-	this.addAction("SERVER_DOWN", function(client, message) {
+	/*this.addAction("SERVER_DOWN", function(client, message) {
 		_self.serverDown(client, message);
-	});
+	});*/
 	
 	this.addAction("START_WATCH", function(client, message) {
 		_self.executeStartWatchServer(client, message);

@@ -17,7 +17,7 @@ MongoDBManager.prototype.init = function(settings)
 		});
 	
 	if (!settings || settings.get)
-		this.defineMethod('/get/:id', function(req, res){
+		this.defineMethod('/get', function(req, res){
 		    _self.executeGet(req, res);
 		});
 	
@@ -62,18 +62,28 @@ MongoDBManager.prototype.requestMiddleware = function(req, res, next)
 
 MongoDBManager.prototype.executeGet = function(req, res, result)
 {
-	var id = req.param("id");
+	var expression = typeof req.body == "object" ? req.body : {};
 	
 	sys.log("-MongoDBManager[executeGet]- " + id);
 	
-	this.dbfacade.withCollection(this.collection).findOne({_id: id}, function(err, obj) {
+	this.getItem(expression, function(err, obj) {
 		if (!err && obj)
 			res.send({data: obj});
 		else
 			res.send({error: "Error", code: 0});
 		
 		if (result)
-			result(arguments);
+			result(err, obj);
+	});
+};
+
+MongoDBManager.prototype.getItem = function(expression, result)
+{
+	sys.log("-MongoDBManager[getItem]- " + sys.inspect(expression));
+	
+	this.dbfacade.withCollection(this.collection).findOne(expression, function(err, obj) {
+		if (result)
+			result(err, obj);
 	});
 };
 
@@ -81,9 +91,9 @@ MongoDBManager.prototype.executeList = function(req, res, result)
 {
 	var expression = typeof req.body == "object" ? req.body : {};
 	
-	sys.log("-MongoDBManager[executeList]-", sys.inspect(expression));
+	sys.log("-MongoDBManager[executeList]-", expression);
 	
-	this.dbfacade.withCollection(this.collection).find(expression, function(err, collection) {
+	this.listItems(expression, function(err, collection) {
 		if (!err && collection)
 		{
 			res.send({data: collection});
@@ -107,6 +117,17 @@ MongoDBManager.prototype.executeList = function(req, res, result)
 	});
 };
 
+
+MongoDBManager.prototype.listItems = function(expression, result)
+{
+	sys.log("-MongoDBManager[listItems]-", sys.inspect(expression));
+	
+	this.dbfacade.withCollection(this.collection).find(expression, function(err, collection) {
+		if (result)
+			result(err, collection);
+	});
+};
+
 MongoDBManager.prototype.executeInsert = function(req, res, result)
 {
 	var obj = req.body;
@@ -115,7 +136,7 @@ MongoDBManager.prototype.executeInsert = function(req, res, result)
 	
 	obj._id = Math.uuidCompact();
 	
-	this.dbfacade.withCollection(this.collection).insert(obj, function(err, doc) {
+	this.insert(obj, function(err, doc) {
 		
 		sys.log("2.-MongoDBManager[executeInsert]- " + err);
 		
@@ -137,6 +158,18 @@ MongoDBManager.prototype.executeInsert = function(req, res, result)
 	});
 };
 
+MongoDBManager.prototype.insert = function(obj, result)
+{
+	obj._id = Math.uuidCompact();
+	
+	sys.log("1.-MongoDBManager[insert]- " + sys.inspect(obj));
+	
+	this.dbfacade.withCollection(this.collection).insert(obj, function(err, doc) {
+		if (result)
+			result(err, doc);
+	});
+};
+
 MongoDBManager.prototype.executeUpdate = function(req, res, result)
 {
 	var obj = req.body;
@@ -144,27 +177,14 @@ MongoDBManager.prototype.executeUpdate = function(req, res, result)
 	
 	var _self = this;
 	
-	sys.log("-MongoDBManager[executeUpdate]- " + id + " : " + sys.inspect(obj));
+	sys.log("-MongoDBManager[executeUpdate]- " + id);
 	
-	this.dbfacade.withCollection(this.collection).update({_id: id}, {$set: obj}, function(err, success) {
-		if (!err && success)
-			_self.dbfacade.withCollection(_self.collection).findOne({_id: id}, function(err, obj) {
-				if (!err && obj)
-				{
-					res.send({data: obj});
-					result(null, obj);
-				}
-				else
-				{
-					var e = {
-							error: "Error", 
-							code: 0
-						};
-					
-					res.send(e);
-					result(e);
-				}
-			});
+	this.updateItem(id, obj, function(err, obj) {
+		if (!err && obj)
+		{
+			res.send({data: obj});
+			result(null, obj);
+		}
 		else
 		{
 			var e = {
@@ -178,13 +198,31 @@ MongoDBManager.prototype.executeUpdate = function(req, res, result)
 	});
 };
 
+MongoDBManager.prototype.updateItem = function(id, obj, result)
+{
+	var _self = this;
+	
+	sys.log("-MongoDBManager[updateItem]- " + id + " : " + sys.inspect(obj));
+	
+	this.dbfacade.withCollection(this.collection).update({_id: id}, {$set: obj}, function(err, success) {
+		if (!err && success)
+			_self.dbfacade.withCollection(_self.collection).findOne({_id: id}, function(err, obj) {
+				if (result)
+					result(err, obj);
+			});
+		else
+		if (result)
+			result(err, success);
+	});
+};
+
 MongoDBManager.prototype.executeDelete = function(req, res, result)
 {
 	var expression = typeof req.body == "object" ? req.body : {};
 		
 	sys.log("1.-MongoDBManager[executeDelete]- " + sys.inspect(expression));
 	
-	this.dbfacade.withCollection(this.collection).remove(expression, function(err, success) {
+	this.deleteItem(expression, function(err, success) {
 		
 		sys.log("2.-MongoDBManager[executeDelete]- " + err);
 		
@@ -203,5 +241,15 @@ MongoDBManager.prototype.executeDelete = function(req, res, result)
 			res.send(e);
 			result(e);
 		}
+	});
+};
+
+MongoDBManager.prototype.deleteItem = function(expression, result)
+{
+	sys.log("1.-MongoDBManager[executeDelete]- " + sys.inspect(expression));
+	
+	this.dbfacade.withCollection(this.collection).remove(expression, function(err, success) {
+		if (result)
+			result(err, success);
 	});
 };

@@ -539,7 +539,7 @@ StationsManager.prototype.disconnected = function(client)
 	if (stationId)
 	{
 		var accountContext = client.data.accountContext;
-		this.context.channelsDataManager.clearBroadcasts(stationId, accountContext._id);
+		this.context.channelsDataManager.deactivateAllChannels(stationId, accountContext._id);
 	}
 	
 	ServerEventDispatcher.prototype.disconnected.call(this, client);

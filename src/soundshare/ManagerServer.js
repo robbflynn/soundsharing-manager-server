@@ -9,14 +9,20 @@ var FlashSocketMessage = flashsocket.FlashSocketMessage;
 var SecurityManager = require('./managers/security/SecurityManager');
 var AccountsManager = require('./managers/accounts/AccountsManager');
 var AccountsDataManager = require('./managers/accounts/AccountsDataManager');
-var ConnectionsManager = require('./managers/connections/ConnectionsManager');
+var ConnectionsManager = require('./managers/connections/ConnectionsManager')
+;
 var ServersManager = require('./managers/servers/ServersManager');
 var ServersDataManager = require('./managers/servers/ServersDataManager');
+
 var StationsManager = require('./managers/stations/StationsManager');
 var StationsDataManager = require('./managers/stations/StationsDataManager');
+
 var BroadcastsManager = require('./managers/broadcasts/BroadcastsManager');
 var PlaylistsDataManager = require('./managers/playlists/PlaylistsDataManager');
+
+var ChannelsManager = require('./managers/channels/ChannelsManager');
 var ChannelsDataManager = require('./managers/channels/ChannelsDataManager');
+
 var GroupsDataManager = require('./managers/groups/GroupsDataManager');
 var MembersDataManager = require('./managers/members/MembersDataManager');
 var NotificationsDataManager = require('./managers/notifications/NotificationsDataManager');
@@ -56,6 +62,12 @@ ManagerServer = module.exports = function(context)
 	
 	this.channelsDataManager = new ChannelsDataManager(this.context);
 	this.context.channelsDataManager = this.channelsDataManager;
+	
+	this.channelsManager = new ChannelsManager(this.context);
+	this.channelsManager.namespace = "socket.managers.ChannelsManager";
+	this.addUnit(this.channelsManager);
+	
+	this.context.channelsManager = this.channelsManager;
 	
 	// Broadcasts Manager
 	
